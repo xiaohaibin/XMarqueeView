@@ -11,6 +11,10 @@
 
 ![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/gif.gif)
 
+## Demo下载
+
+![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/apk/apk.png)
+
 ## 基本使用
 
  [![Download](https://api.bintray.com/packages/jxnk25/maven/XMarqueeView/images/download.svg) ](https://bintray.com/jxnk25/maven/XMarqueeView/_latestVersion)
