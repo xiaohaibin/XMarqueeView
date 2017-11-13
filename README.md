@@ -23,7 +23,7 @@
 
 ```
 dependencies {
-   compile 'compile 'com.xhb:xmarqueeview:latestVersion'//将latestVersion替换成上面最新的版本号
+   compile 'com.xhb:xmarqueeview:latestVersion'//将latestVersion替换成上面最新的版本号
 }
 ```
 
