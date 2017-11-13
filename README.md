@@ -36,7 +36,7 @@ dependencies {
 ```
 
 
-#### 3.在Activity或者Fragment中配置
+#### 3.代码中使用
 
 ```
       final List<String> data = new ArrayList<>();
