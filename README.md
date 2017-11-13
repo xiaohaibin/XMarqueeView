@@ -9,11 +9,11 @@
 
 ## 效果图
 
-![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/device.png)
+![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/gif.gif)
 
 ## 基本使用
 
- [ ![Download](https://api.bintray.com/packages/jxnk25/maven/CommonTitleBar/images/download.svg) ](https://bintray.com/jxnk25/maven/CommonTitleBar/_latestVersion)
+ [![Download](https://api.bintray.com/packages/jxnk25/maven/XMarqueeView/images/download.svg) ](https://bintray.com/jxnk25/maven/XMarqueeView/_latestVersion)
 
 #### 1.添加Gradle依赖
 
@@ -61,19 +61,12 @@ dependencies {
 
 | 属性名 | 属性说明 | 属性值 | 
 | ------------ | ------------- | ------------ |
-| title_background| 标题栏背景色 | color，默认为white |
-| left_button_image| 左边图片按钮背景 | reference ，不设置则不显示|
-| left_button_text| 左边文字按钮内容 |string |
-| left_button_textColor| 左边文字按钮文字颜色 | color，默认为Color.GRAY |
-| left_button_textSize| 左边文字按钮文字大小 | dimension，默认为14sp |
-| title_text| 标题文字内容 | string |
-| title_textColor| 标题文字颜色 |color，默认为Color.GRAY |
-| title_textSize| 标题文字大小| dimension，默认为14sp |
-| right_button_image| 右边图片按钮背景 |reference  ，不设置则不显示|
-| right_button_text| 右边文字按钮内容 | string |
-| right_button_textColor| 右边文字颜色 | color，默认为Color.GRAY |
-| right_button_textSize| 右边文字大小 | dimension，默认为14sp |
-| show_line| 是否显示顶部分割线 | booleanT类型，默认显示 |
+| isSetAnimDuration| 是否设置动画时间间隔 | boolean，默认为false |
+| isSingleLine| 是否单行显示 | boolean ，默认false双行显示|
+| marquee_interval| 轮播间隔 ，轮播间隔|int类型，默认3000ms |
+| marquee_animDuration| 轮播动画执行时间 | int类型，默认为1000ms |
+| marquee_textSize| 轮播字体大小 | dimension，默认为14sp |
+| marquee_textColor|轮播字体颜色 | color，默认为 #888888 |
 
 ## 关于我
 个人邮箱：xhb_199409@163.com
@@ -82,14 +75,15 @@ dependencies {
 
 [简书主页](http://www.jianshu.com/users/42aed90cf5af/latest_articles)
 
-[个人博客](http://blog.csdn.net/jxnk25)
+[个人博客](http://www.jxnk25.club)
 
 
-##如果觉得文章帮到你，不求打赏，喜欢我的文章可以关注我和朋友一起运营的微信公众号，将会定期推送优质技术文章，求关注~~~##
+## 如果觉得文章帮到你，不求打赏，喜欢我的文章可以关注我和朋友一起运营的微信公众号，将会定期推送优质技术文章，求关注~~~
 
 ![欢迎关注“大话安卓”微信公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##欢迎加入“大话安卓”技术交流群，一起分享，共同进步##
+
+## 欢迎加入“大话安卓”技术交流群，一起分享，共同进步
 ![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-326c166b86ed8e94.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 License
