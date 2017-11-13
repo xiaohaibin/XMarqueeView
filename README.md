@@ -9,7 +9,7 @@
 
 ## 效果图
 
-![1](https://github.com/xiaohaibin/CustomTitileBar/blob/master/screenshot/gif.gif)
+![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/device.png)
 
 ## 基本使用
 
@@ -19,42 +19,41 @@
 
 ```
 dependencies {
-    compile 'compile 'com.xhb:commontitlebar:latestVersion'//将latestVersion替换成上面最新的版本号
+   compile 'compile 'com.xhb:xmarqueeview:latestVersion'//将latestVersion替换成上面最新的版本号
 }
 ```
 
 #### 2.在布局文件中添加
 
 ```
-    <com.stx.xhb.commontitlebar.CustomTitlebar
-        android:id="@+id/title3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title_text="标题"
-        app:left_button_image="@mipmap/icon_back"
-        app:title_textSize="14sp"
-        app:right_button_image="@mipmap/img_currency_selected"/>
+   <com.stx.xmarqueeview.XMarqueeView
+            android:id="@+id/upview2"
+            android:layout_width="0dp"
+            app:isSingleLine="true"
+            app:isSetAnimDuration="true"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 ```
 
 
 #### 3.在Activity或者Fragment中配置
 
 ```
-        CustomTitlebar customTitlebar2 = (CustomTitlebar) findViewById(R.id.title2);
-        customTitlebar2.setAction(new CustomTitlebar.TitleBarOnClickListener() {
+      final List<String> data = new ArrayList<>();
+        data.add("神奇宝贝（精灵宝可梦）有哪些著名的梗？");
+        data.add("我翻开自我保护的书，上面只写了两个大字：证据");
+        data.add("接纳自己，是无条件地爱，包括爱所有的痛苦");
+        data.add("3 岁前，世界对待孩子的一切，都会给他们留下深刻的第一印象");
+        data.add("担心今天没锻炼，现在站起来，做一组完美深蹲");
+
+        XMarqueeView marqueeviewone= (XMarqueeView) findViewById(R.id.upview1);
+        marqueeviewone.setData(data);
+        marqueeviewone.setOnItemClickListener(new XMarqueeView.OnItemClickListener() {
             @Override
-            public void performAction(View view) {
-                switch (view.getId()){
-                    case R.id.iv_left:
-                        Toast.makeText(MainActivity.this, "左边图片按钮", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.tv_right:
-                        Toast.makeText(MainActivity.this, "右边文字按钮", Toast.LENGTH_SHORT).show();
-                        break;
-                }
+            public void onItemClick(int position, View view) {
+                Toast.makeText(MainActivity.this, data.get(position), Toast.LENGTH_SHORT).show();
             }
         });
-
 ```
 
 
