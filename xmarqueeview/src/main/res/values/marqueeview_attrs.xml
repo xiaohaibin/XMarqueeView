@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="XMarqueeView">
+        <attr name="isSetAnimDuration" format="boolean" />
+        <attr name="isSingleLine" format="boolean" />
+        <attr name="marquee_interval" format="integer|reference" />
+        <attr name="marquee_animDuration" format="integer|reference" />
+        <attr name="marquee_textSize" format="dimension|reference"/>
+        <attr name="marquee_textColor" format="color|reference"/>
+    </declare-styleable>
+</resources>

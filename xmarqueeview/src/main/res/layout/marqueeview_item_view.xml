@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/marquee_tv_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:drawablePadding="2dp"
+        android:drawableLeft="@drawable/icon_dot"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/marquee_tv_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:drawablePadding="2dp"
+        android:drawableLeft="@drawable/icon_dot"
+        android:textSize="14sp" />
+
+</LinearLayout>

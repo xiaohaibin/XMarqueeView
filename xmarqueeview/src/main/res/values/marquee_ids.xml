@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="marquee_tv_one" type="id" />
+    <item name="marquee_tv_two" type="id" />
+</resources>
