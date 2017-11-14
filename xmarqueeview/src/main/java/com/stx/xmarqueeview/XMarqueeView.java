@@ -46,6 +46,10 @@ public class XMarqueeView extends ViewFlipper {
     private int animDuration = 1000;
     private int textSize = 14;
     private int textColor = Color.parseColor("#888888");
+    /**
+     * 一次性显示多少个
+     */
+    private int itemCount = 2;
 
     public XMarqueeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -57,6 +61,7 @@ public class XMarqueeView extends ViewFlipper {
         if (typedArray != null) {
             isSetAnimDuration = typedArray.getBoolean(R.styleable.XMarqueeView_isSetAnimDuration, false);
             isSingleLine = typedArray.getBoolean(R.styleable.XMarqueeView_isSingleLine, false);
+            itemCount = isSingleLine ? 1 : 2;
             interval = typedArray.getInteger(R.styleable.XMarqueeView_marquee_interval, interval);
             animDuration = typedArray.getInteger(R.styleable.XMarqueeView_marquee_animDuration, animDuration);
             if (typedArray.hasValue(R.styleable.XMarqueeView_marquee_textSize)) {
@@ -115,30 +120,37 @@ public class XMarqueeView extends ViewFlipper {
         if (data.isEmpty()) {
             return;
         }
+        int currentIndex = 0;
         List<View> viewList = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
+        int loopconunt = data.size() % itemCount == 0 ? data.size() / itemCount : data.size() / itemCount + 1;
+        for (int i = 0; i < loopconunt; i++) {
             LinearLayout moreView = (LinearLayout) LayoutInflater.from(getContext()).inflate(layoutId, null);
             TextView tvOne = (TextView) moreView.findViewById(R.id.marquee_tv_one);
             TextView tvTwo = (TextView) moreView.findViewById(R.id.marquee_tv_two);
             if (tvOne != null) {
                 tvOne.setTextSize(textSize);
                 tvOne.setTextColor(textColor);
-                tvOne.setText(data.get(i));
+                tvOne.setText(data.get(currentIndex));
             } else {
                 throw new RuntimeException("Please set the first TextView Id With marquee_tv_one !");
             }
             if (tvTwo != null) {
                 tvTwo.setTextSize(textSize);
                 tvTwo.setTextColor(textColor);
-                if (!isSingleLine && data.size() > i + 1) {
-                    tvTwo.setText(data.get(i + 1));
+                if (isSingleLine) {
+                    tvTwo.setVisibility(GONE);
                 } else {
-                    moreView.findViewById(R.id.marquee_tv_two).setVisibility(View.GONE);
+                    if (currentIndex >= loopconunt - 1) {
+                        tvTwo.setText(data.get(0));
+                    } else {
+                        tvTwo.setText(data.get(currentIndex + 1));
+                    }
                 }
             } else {
                 throw new RuntimeException("Please set the second TextView Id With marquee_tv_two !");
             }
             viewList.add(moreView);
+            currentIndex = currentIndex + itemCount;
         }
         setViews(viewList);
     }
