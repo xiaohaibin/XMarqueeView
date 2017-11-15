@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +62,6 @@ public class XMarqueeView extends ViewFlipper {
         if (typedArray != null) {
             isSetAnimDuration = typedArray.getBoolean(R.styleable.XMarqueeView_isSetAnimDuration, false);
             isSingleLine = typedArray.getBoolean(R.styleable.XMarqueeView_isSingleLine, false);
-            itemCount = isSingleLine ? 1 : 2;
             interval = typedArray.getInteger(R.styleable.XMarqueeView_marquee_interval, interval);
             animDuration = typedArray.getInteger(R.styleable.XMarqueeView_marquee_animDuration, animDuration);
             if (typedArray.hasValue(R.styleable.XMarqueeView_marquee_textSize)) {
@@ -71,6 +71,7 @@ public class XMarqueeView extends ViewFlipper {
             textColor = typedArray.getColor(R.styleable.XMarqueeView_marquee_textColor, textColor);
             typedArray.recycle();
         }
+        itemCount = isSingleLine ? 1 : 2;
         Animation animIn = AnimationUtils.loadAnimation(context, R.anim.anim_marquee_in);
         Animation animOut = AnimationUtils.loadAnimation(context, R.anim.anim_marquee_out);
         if (isSetAnimDuration) {
@@ -123,7 +124,9 @@ public class XMarqueeView extends ViewFlipper {
         int currentIndex = 0;
         List<View> viewList = new ArrayList<>();
         int loopconunt = data.size() % itemCount == 0 ? data.size() / itemCount : data.size() / itemCount + 1;
+        Log.i("===>loopconunt", loopconunt + "===");
         for (int i = 0; i < loopconunt; i++) {
+            Log.i("===>currentIndex", currentIndex + "===");
             LinearLayout moreView = (LinearLayout) LayoutInflater.from(getContext()).inflate(layoutId, null);
             TextView tvOne = (TextView) moreView.findViewById(R.id.marquee_tv_one);
             TextView tvTwo = (TextView) moreView.findViewById(R.id.marquee_tv_two);
@@ -140,7 +143,7 @@ public class XMarqueeView extends ViewFlipper {
                 if (isSingleLine) {
                     tvTwo.setVisibility(GONE);
                 } else {
-                    if (currentIndex >= loopconunt - 1) {
+                    if (currentIndex == data.size() - 1 && currentIndex % 2 == 0) {
                         tvTwo.setText(data.get(0));
                     } else {
                         tvTwo.setText(data.get(currentIndex + 1));

@@ -21,9 +21,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         final List<String> data = new ArrayList<>();
-        data.add("神奇宝贝（精灵宝可梦）有哪些著名的梗？");
-        data.add("我翻开自我保护的书，上面只写了两个大字：证据");
-        data.add("接纳自己，是无条件地爱，包括爱所有的痛苦");
+        data.add("花鲢（大头鱼）成交1000.0斤!徐克强于11月06日在成都市以56.00斤单价成交");
+        data.add("草鱼（鲩鱼）成交1000.0斤!徐克强于11月06日在成都市以56.00单价成交");
+        data.add("草鱼（鲩鱼）成交1000.0斤!徐克强于11月06日在成都市以56.00单价成交");
+        data.add("牡蛎成交1000.0斤!徐克强于11月06日在成都市以56.00单价成交");
+        data.add("草鱼（鲩鱼）成交1000.0斤!徐克强于11月06日在成都市以56.00单价成交");
+        data.add("草鱼（鲩鱼）成交1000.0斤!于11月06日在成都市以56.00单价成交");
 
         XMarqueeView marqueeviewone= (XMarqueeView) findViewById(R.id.upview1);
         //自定义轮播布局，务必要将子自定义布局中的两个TextView 的ID  分别设置为marquee_tv_one  marquee_tv_two
