@@ -1,3 +1,7 @@
+ [![Version](https://api.bintray.com/packages/jxnk25/maven/XMarqueeView/images/download.svg) ](https://bintray.com/jxnk25/maven/XMarqueeView/_latestVersion) 
+ [![API](https://img.shields.io/badge/API-15%2B-green.svg)]()
+ [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)]()
+
 # XMarqueeView
 类似淘宝头条、京东头条的跑马灯效果，上下轮播，支持单行/双行显示
 
@@ -16,10 +20,6 @@
 ![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/apk/apk.png)
 
 ## 基本使用
-
- [![Version](https://api.bintray.com/packages/jxnk25/maven/XMarqueeView/images/download.svg) ](https://bintray.com/jxnk25/maven/XMarqueeView/_latestVersion) 
- [![API](https://img.shields.io/badge/API-15%2B-green.svg)]()
- [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)]()
 
 #### 1.添加Gradle依赖
 
