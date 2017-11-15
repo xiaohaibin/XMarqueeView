@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,9 +123,7 @@ public class XMarqueeView extends ViewFlipper {
         int currentIndex = 0;
         List<View> viewList = new ArrayList<>();
         int loopconunt = data.size() % itemCount == 0 ? data.size() / itemCount : data.size() / itemCount + 1;
-        Log.i("===>loopconunt", loopconunt + "===");
         for (int i = 0; i < loopconunt; i++) {
-            Log.i("===>currentIndex", currentIndex + "===");
             LinearLayout moreView = (LinearLayout) LayoutInflater.from(getContext()).inflate(layoutId, null);
             TextView tvOne = (TextView) moreView.findViewById(R.id.marquee_tv_one);
             TextView tvTwo = (TextView) moreView.findViewById(R.id.marquee_tv_two);
