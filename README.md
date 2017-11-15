@@ -17,7 +17,9 @@
 
 ## 基本使用
 
- [![Download](https://api.bintray.com/packages/jxnk25/maven/XMarqueeView/images/download.svg) ](https://bintray.com/jxnk25/maven/XMarqueeView/_latestVersion)
+ [![Version](https://api.bintray.com/packages/jxnk25/maven/XMarqueeView/images/download.svg) ](https://bintray.com/jxnk25/maven/XMarqueeView/_latestVersion) 
+ [![API](https://img.shields.io/badge/API-15%2B-green.svg)]()
+ [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)]()
 
 #### 1.添加Gradle依赖
 
