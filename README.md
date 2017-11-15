@@ -13,7 +13,7 @@
 
 ## 效果图
 
-![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/gif.gif)
+![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/gif1.gif)
 
 ## Demo下载
 
