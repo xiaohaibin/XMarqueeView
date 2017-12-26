@@ -76,6 +76,20 @@ dependencies {
         });
 ```
 
+#### 5.重影问题可参考以下解决方案
+
+    @Override
+    public void onStart() {
+        super.onStart(); 
+        marqueeView.startFlipping();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        marqueeView.stopFlipping();
+    }
+
 ## 自定义属性说明
 
 | 属性名 | 属性说明 | 属性值 | 
