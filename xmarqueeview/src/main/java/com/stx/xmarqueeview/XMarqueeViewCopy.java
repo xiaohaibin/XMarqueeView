@@ -24,7 +24,7 @@ import java.util.List;
  * <p>
  * Created by jxnk25 on 2017/11/03.
  */
-public class XMarqueeView extends ViewFlipper {
+public class XMarqueeViewCopy extends ViewFlipper {
     /**
      * 是否设置动画时间间隔
      */
@@ -51,7 +51,7 @@ public class XMarqueeView extends ViewFlipper {
      */
     private int itemCount = 2;
 
-    public XMarqueeView(Context context, AttributeSet attrs) {
+    public XMarqueeViewCopy(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0);
     }
