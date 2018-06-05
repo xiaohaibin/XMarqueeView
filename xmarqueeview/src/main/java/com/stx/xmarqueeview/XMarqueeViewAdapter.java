@@ -1,5 +1,7 @@
 package com.stx.xmarqueeview;
 
+import android.view.View;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,7 @@ public abstract class XMarqueeViewAdapter<T> {
     private OnDataChangedListener mOnDataChangedListener;
 
     public XMarqueeViewAdapter(List<T> datas) {
-        mDatas = datas;
+        this.mDatas = datas;
         if (datas == null || datas.isEmpty()) {
             throw new RuntimeException("Nothing to Show With XMarqueeView");
         }
@@ -35,6 +37,10 @@ public abstract class XMarqueeViewAdapter<T> {
     public T getItem(int position) {
         return mDatas.get(position);
     }
+
+    public abstract View onCreateView(XMarqueeViewCopy parent);
+
+    public abstract void onBindView(View view, int position);
 
     public void setOnDataChangedListener(OnDataChangedListener onDataChangedListener) {
         mOnDataChangedListener = onDataChangedListener;

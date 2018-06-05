@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.stx.xmarqueeviewdemo.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:gravity="center">
 
         <ImageView
@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:visibility="gone"
         android:gravity="center">
 
         <ImageView
@@ -52,10 +53,10 @@
         <com.stx.xmarqueeview.XMarqueeView
             android:id="@+id/upview2"
             android:layout_width="0dp"
-            app:isSingleLine="true"
-            app:isSetAnimDuration="true"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            app:isSetAnimDuration="true"
+            app:isSingleLine="true" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -65,5 +66,12 @@
             android:src="@drawable/icon_report_btn" />
 
     </LinearLayout>
+
+    <com.stx.xmarqueeview.XMarqueeViewCopy
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isSetAnimDuration="true"
+        app:isSingleLine="false" />
 
 </LinearLayout>
