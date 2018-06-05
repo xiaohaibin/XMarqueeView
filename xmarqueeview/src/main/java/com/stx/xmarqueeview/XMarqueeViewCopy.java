@@ -109,7 +109,7 @@ public class XMarqueeViewCopy extends ViewFlipper implements XMarqueeViewAdapter
             for (int j = 0; j < itemCount; j++) {
                 View view = mMarqueeViewAdapter.onCreateView(this);
                 parentView.addView(view);
-                Log.i("====>index", getRealPosition(j, currentIndex) + "===");
+                Log.i("====>index",getRealPosition(j, currentIndex)+"===");
                 mMarqueeViewAdapter.onBindView(view, getRealPosition(j, currentIndex));
             }
             addView(parentView);
@@ -119,15 +119,12 @@ public class XMarqueeViewCopy extends ViewFlipper implements XMarqueeViewAdapter
     }
 
     private int getRealPosition(int index, int currentIndex) {
-        switch (index) {
-            case 0:
-                return currentIndex;
-            default:
-                if (currentIndex == mMarqueeViewAdapter.getItemCount() - 1 && currentIndex % 2 == 0) {
-                    return 0;
-                } else {
-                    return currentIndex + index;
-                }
+        if (index == 0) {
+            return currentIndex;
+        } else if (currentIndex == mMarqueeViewAdapter.getItemCount() - 1 && currentIndex % 2 == 0) {
+            return 0;
+        } else {
+            return currentIndex + index;
         }
     }
 
