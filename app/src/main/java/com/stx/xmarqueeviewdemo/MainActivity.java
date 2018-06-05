@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mDatas.add("跑马灯内容4");
         mDatas.add("跑马灯内容5");
         mDatas.add("跑马灯内容6");
-//        mDatas.add("跑马灯内容7");
+        mDatas.add("跑马灯内容7");
 
         XMarqueeView marqueeviewone = (XMarqueeView) findViewById(R.id.upview1);
         //自定义轮播布局，务必要将子自定义布局中的两个TextView 的ID  分别设置为marquee_tv_one  marquee_tv_two

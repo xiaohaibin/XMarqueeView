@@ -3,22 +3,14 @@ package com.stx.xmarqueeview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.xhb.xmarqueeview.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 仿淘宝首页的 淘宝头条滚动的自定义View
@@ -71,9 +63,10 @@ public class XMarqueeViewCopy extends ViewFlipper implements XMarqueeViewAdapter
                 textSize = Utils.px2sp(context, textSize);
             }
             textColor = typedArray.getColor(R.styleable.XMarqueeView_marquee_textColor, textColor);
+            itemCount = typedArray.getInt(R.styleable.XMarqueeView_marquee_count, itemCount);
             typedArray.recycle();
         }
-        itemCount = isSingleLine ? 1 : 3;
+        isSingleLine = itemCount == 1;
         Animation animIn = AnimationUtils.loadAnimation(context, R.anim.anim_marquee_in);
         Animation animOut = AnimationUtils.loadAnimation(context, R.anim.anim_marquee_out);
         if (isSetAnimDuration) {
@@ -103,28 +96,34 @@ public class XMarqueeViewCopy extends ViewFlipper implements XMarqueeViewAdapter
         int currentIndex = 0;
         int loopconunt = mMarqueeViewAdapter.getItemCount() % itemCount == 0 ? mMarqueeViewAdapter.getItemCount() / itemCount : mMarqueeViewAdapter.getItemCount() / itemCount + 1;
         for (int i = 0; i < loopconunt; i++) {
-            LinearLayout parentView = new LinearLayout(getContext());
-            parentView.setOrientation(LinearLayout.VERTICAL);
-            parentView.removeAllViews();
-            for (int j = 0; j < itemCount; j++) {
+            if (isSingleLine) {
                 View view = mMarqueeViewAdapter.onCreateView(this);
-                parentView.addView(view);
-                Log.i("====>index",getRealPosition(j, currentIndex)+"===");
-                mMarqueeViewAdapter.onBindView(view, getRealPosition(j, currentIndex));
+                mMarqueeViewAdapter.onBindView(view, currentIndex);
+                currentIndex = currentIndex + 1;
+                addView(view);
+            } else {
+                LinearLayout parentView = new LinearLayout(getContext());
+                parentView.setOrientation(LinearLayout.VERTICAL);
+                parentView.removeAllViews();
+                for (int j = 0; j < itemCount; j++) {
+                    View view = mMarqueeViewAdapter.onCreateView(this);
+                    parentView.addView(view);
+                    mMarqueeViewAdapter.onBindView(view, getRealPosition(j, currentIndex));
+                    currentIndex = getRealPosition(j, currentIndex);
+                }
+                addView(parentView);
             }
-            addView(parentView);
-            currentIndex = currentIndex + itemCount;
         }
         startFlipping();
     }
 
     private int getRealPosition(int index, int currentIndex) {
-        if (index == 0) {
-            return currentIndex;
-        } else if (currentIndex == mMarqueeViewAdapter.getItemCount() - 1 && currentIndex % 2 == 0) {
+        if ((index == 0 && currentIndex == 0) ||
+                (currentIndex == mMarqueeViewAdapter.getItemCount() - 1
+                        && currentIndex % itemCount == 0)) {
             return 0;
         } else {
-            return currentIndex + index;
+            return currentIndex + 1;
         }
     }
 
