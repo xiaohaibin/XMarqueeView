@@ -43,7 +43,7 @@ dependencies {
 ```
 
 
-#### 3.代码中使用
+#### 3.创建MarqueeView适配器
 
 ```
 /**
@@ -82,6 +82,8 @@ public class MarqueeViewAdapter extends XMarqueeViewAdapter<String> {
 }
 ```
 
+#### 4.数据设置
+
 ```
         List<String> data = new ArrayList<>();
         data.add("神奇宝贝（精灵宝可梦）有哪些著名的梗？");
@@ -94,20 +96,6 @@ public class MarqueeViewAdapter extends XMarqueeViewAdapter<String> {
         xMarqueeView.setAdapter(new MarqueeViewAdapter(data, this));
         //刷新数据
         //marqueeViewAdapter.setData(data);
-```
-
-#### 4.自定义轮播布局
-
-```
-      XMarqueeView marqueeviewone= (XMarqueeView) findViewById(R.id.upview1);
-        //自定义轮播布局，务必要将子自定义布局中的两个TextView 的ID  分别设置为marquee_tv_one  marquee_tv_two
-        marqueeviewone.setData(R.layout.custom_item_view,data);
-        marqueeviewone.setOnItemClickListener(new XMarqueeView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                Toast.makeText(MainActivity.this, data.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
 ```
 
 #### 5.重影问题可参考以下解决方案
