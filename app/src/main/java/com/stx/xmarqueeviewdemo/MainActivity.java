@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.stx.xmarqueeview.XMarqueeView;
 import com.stx.xmarqueeview.XMarqueeViewAdapter;
-import com.stx.xmarqueeview.XMarqueeViewCopy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,41 +34,16 @@ public class MainActivity extends AppCompatActivity {
         mDatas.add("跑马灯内容6");
         mDatas.add("跑马灯内容7");
 
-        XMarqueeView marqueeviewone = (XMarqueeView) findViewById(R.id.upview1);
-        //自定义轮播布局，务必要将子自定义布局中的两个TextView 的ID  分别设置为marquee_tv_one  marquee_tv_two
-        marqueeviewone.setData(R.layout.custom_item_view, mDatas);
-        marqueeviewone.setOnItemClickListener(new XMarqueeView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                Toast.makeText(MainActivity.this, mDatas.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+        XMarqueeView marqueeviewone = (XMarqueeView) findViewById(R.id.marquee1);
+        marqueeviewone.setAdapter(new MarqueeViewAdapter(mDatas, this));
 
 
-        XMarqueeView marqueeviewtwo = (XMarqueeView) findViewById(R.id.upview2);
-        marqueeviewtwo.setData(mDatas);
-        marqueeviewtwo.setOnItemClickListener(new XMarqueeView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                Toast.makeText(MainActivity.this, mDatas.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+        XMarqueeView marqueeviewtwo = (XMarqueeView) findViewById(R.id.marquee2);
+        marqueeviewtwo.setAdapter(new MarqueeViewAdapter(mDatas, this));
 
 
-        XMarqueeViewCopy xMarqueeViewCopy = (XMarqueeViewCopy) findViewById(R.id.test);
-        XMarqueeViewAdapter<String> marqueeViewAdapter = new XMarqueeViewAdapter<String>(mDatas) {
-            @Override
-            public View onCreateView(XMarqueeViewCopy parent) {
-                return LayoutInflater.from(parent.getContext()).inflate(R.layout.marqueeview_item, null);
-            }
-
-            @Override
-            public void onBindView(View view, int position) {
-                TextView tvOne = (TextView) view.findViewById(R.id.marquee_tv_one);
-                tvOne.setText(mDatas.get(position));
-            }
-        };
-        xMarqueeViewCopy.setAdapter(marqueeViewAdapter);
+        XMarqueeView xMarqueeView = (XMarqueeView) findViewById(R.id.marquee3);
+        xMarqueeView.setAdapter(new MarqueeViewAdapter(mDatas, this));
         //刷新数据
 //        marqueeViewAdapter.setData(mDatas);
     }

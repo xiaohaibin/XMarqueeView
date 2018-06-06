@@ -3,28 +3,23 @@ package com.stx.xmarqueeview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.xhb.xmarqueeview.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 仿淘宝首页的 淘宝头条滚动的自定义View
  * <p>
  * Created by jxnk25 on 2017/11/03.
  */
-public class XMarqueeView extends ViewFlipper {
+public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnDataChangedListener {
     /**
      * 是否设置动画时间间隔
      */
@@ -49,7 +44,9 @@ public class XMarqueeView extends ViewFlipper {
     /**
      * 一次性显示多少个
      */
-    private int itemCount = 2;
+    private int itemCount = 1;
+
+    private XMarqueeViewAdapter mMarqueeViewAdapter;
 
     public XMarqueeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -60,7 +57,7 @@ public class XMarqueeView extends ViewFlipper {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XMarqueeView, defStyleAttr, 0);
         if (typedArray != null) {
             isSetAnimDuration = typedArray.getBoolean(R.styleable.XMarqueeView_isSetAnimDuration, false);
-            isSingleLine = typedArray.getBoolean(R.styleable.XMarqueeView_isSingleLine, false);
+            isSingleLine = typedArray.getBoolean(R.styleable.XMarqueeView_isSingleLine, true);
             interval = typedArray.getInteger(R.styleable.XMarqueeView_marquee_interval, interval);
             animDuration = typedArray.getInteger(R.styleable.XMarqueeView_marquee_animDuration, animDuration);
             if (typedArray.hasValue(R.styleable.XMarqueeView_marquee_textSize)) {
@@ -68,9 +65,10 @@ public class XMarqueeView extends ViewFlipper {
                 textSize = Utils.px2sp(context, textSize);
             }
             textColor = typedArray.getColor(R.styleable.XMarqueeView_marquee_textColor, textColor);
+            itemCount = typedArray.getInt(R.styleable.XMarqueeView_marquee_count, itemCount);
             typedArray.recycle();
         }
-        itemCount = isSingleLine ? 1 : 2;
+        isSingleLine = itemCount == 1;
         Animation animIn = AnimationUtils.loadAnimation(context, R.anim.anim_marquee_in);
         Animation animOut = AnimationUtils.loadAnimation(context, R.anim.anim_marquee_out);
         if (isSetAnimDuration) {
@@ -82,87 +80,81 @@ public class XMarqueeView extends ViewFlipper {
         setFlipInterval(interval);
     }
 
-    /**
-     * 设置循环滚动的View数组
-     *
-     * @param views
-     */
-    private void setViews(final List<View> views) {
-        if (views == null || views.size() == 0) {
-            return;
+
+    public void setAdapter(XMarqueeViewAdapter adapter) {
+        if (adapter == null) {
+            throw new RuntimeException("adapter must not be null");
         }
+        if (mMarqueeViewAdapter != null) {
+            throw new RuntimeException("you have already set an Adapter");
+        }
+        this.mMarqueeViewAdapter = adapter;
+        mMarqueeViewAdapter.setOnDataChangedListener(this);
+        setData();
+    }
+
+    private void setData() {
         removeAllViews();
-        for (int i = 0; i < views.size(); i++) {
-            final int position = i;
-            views.get(i).setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onItemClickListener != null) {
-                        onItemClickListener.onItemClick(position, views.get(position));
-                    }
+        int currentIndex = 0;
+        int loopconunt = mMarqueeViewAdapter.getItemCount() % itemCount == 0 ? mMarqueeViewAdapter.getItemCount() / itemCount : mMarqueeViewAdapter.getItemCount() / itemCount + 1;
+        for (int i = 0; i < loopconunt; i++) {
+            if (isSingleLine) {
+                View view = mMarqueeViewAdapter.onCreateView(this);
+                mMarqueeViewAdapter.onBindView(view, view, currentIndex);
+                currentIndex = currentIndex + 1;
+                addView(view);
+            } else {
+                LinearLayout parentView = new LinearLayout(getContext());
+                parentView.setOrientation(LinearLayout.VERTICAL);
+                parentView.setGravity(Gravity.CENTER);
+                parentView.removeAllViews();
+                for (int j = 0; j < itemCount; j++) {
+                    View view = mMarqueeViewAdapter.onCreateView(this);
+                    parentView.addView(view);
+                    mMarqueeViewAdapter.onBindView(parentView, view, getRealPosition(j, currentIndex));
+                    currentIndex = getRealPosition(j, currentIndex);
                 }
-            });
-            ViewGroup viewGroup = (ViewGroup) views.get(i).getParent();
-            if (viewGroup != null) {
-                viewGroup.removeAllViews();
+                addView(parentView);
             }
-            addView(views.get(i));
         }
         startFlipping();
     }
 
-
-    public void setData(List<String> data) {
-        setData(R.layout.marqueeview_item_view, data);
-    }
-
-    public void setData(@LayoutRes int layoutId, List<String> data) {
-        if (data == null || data.isEmpty()) {
-            return;
+    private int getRealPosition(int index, int currentIndex) {
+        if ((index == 0 && currentIndex == 0) ||
+                (currentIndex == mMarqueeViewAdapter.getItemCount() - 1
+                        && currentIndex % itemCount == 0)) {
+            return 0;
+        } else {
+            return currentIndex + 1;
         }
-        int currentIndex = 0;
-        List<View> viewList = new ArrayList<>();
-        int loopconunt = data.size() % itemCount == 0 ? data.size() / itemCount : data.size() / itemCount + 1;
-        for (int i = 0; i < loopconunt; i++) {
-            LinearLayout moreView = (LinearLayout) LayoutInflater.from(getContext()).inflate(layoutId, null);
-            TextView tvOne = (TextView) moreView.findViewById(R.id.marquee_tv_one);
-            TextView tvTwo = (TextView) moreView.findViewById(R.id.marquee_tv_two);
-            if (tvOne != null) {
-                tvOne.setTextSize(textSize);
-                tvOne.setTextColor(textColor);
-                tvOne.setText(data.get(currentIndex));
-            } else {
-                throw new RuntimeException("Please set the first TextView Id With marquee_tv_one !");
-            }
-            if (tvTwo != null) {
-                tvTwo.setTextSize(textSize);
-                tvTwo.setTextColor(textColor);
-                if (isSingleLine) {
-                    tvTwo.setVisibility(GONE);
-                } else {
-                    if (currentIndex == data.size() - 1 && currentIndex % 2 == 0) {
-                        tvTwo.setText(data.get(0));
-                    } else {
-                        tvTwo.setText(data.get(currentIndex + 1));
-                    }
-                }
-            } else {
-                throw new RuntimeException("Please set the second TextView Id With marquee_tv_two !");
-            }
-            viewList.add(moreView);
-            currentIndex = currentIndex + itemCount;
+    }
+
+    @Override
+    public void onChanged() {
+        setData();
+    }
+
+    @Override
+    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+        if (VISIBLE == visibility) {
+            startFlipping();
+        } else if (GONE == visibility || INVISIBLE == visibility) {
+            stopFlipping();
         }
-        setViews(viewList);
     }
 
-
-    private OnItemClickListener onItemClickListener;
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        startFlipping();
     }
 
-    public interface OnItemClickListener {
-        void onItemClick(int position, View view);
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        stopFlipping();
     }
+
 }
