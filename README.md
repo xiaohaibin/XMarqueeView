@@ -13,11 +13,11 @@
 
 ## 效果图
 
-![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/gif1.gif)
+![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/gif.gif)
 
 ## Demo下载
 
-![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/apk/apk.png)
+![](https://github.com/xiaohaibin/XMarqueeView/blob/master/apk/apk.png)
 
 ## 基本使用
 
