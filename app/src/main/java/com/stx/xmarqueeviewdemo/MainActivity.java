@@ -26,13 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         mDatas = new ArrayList<>();
-        mDatas.add("跑马灯内容1");
-        mDatas.add("跑马灯内容2");
-        mDatas.add("跑马灯内容3");
-        mDatas.add("跑马灯内容4");
-        mDatas.add("跑马灯内容5");
-        mDatas.add("跑马灯内容6");
-        mDatas.add("跑马灯内容7");
+        for (int i = 0; i < 7; i++) {
+            mDatas.add("这是跑马灯内容" + (i + 1));
+        }
 
         XMarqueeView marqueeviewone = (XMarqueeView) findViewById(R.id.marquee1);
         marqueeviewone.setAdapter(new MarqueeViewAdapter(mDatas, this));
