@@ -15,10 +15,6 @@
 
 ![1](https://github.com/xiaohaibin/XMarqueeView/blob/master/screenshot/gif.gif)
 
-## Demo下载
-
-![](https://github.com/xiaohaibin/XMarqueeView/blob/master/apk/apk.png)
-
 ## 基本使用
 
 #### 1.添加Gradle依赖
