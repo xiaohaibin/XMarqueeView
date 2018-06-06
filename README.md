@@ -46,13 +46,7 @@ dependencies {
 #### 3.创建MarqueeView适配器
 
 ```
-/**
- * @author: xiaohaibin.
- * @time: 2018/6/6
- * @mail:xhb_199409@163.com
- * @github:https://github.com/xiaohaibin
- * @describe: 创建MarqueeView适配器
- */
+
 public class MarqueeViewAdapter extends XMarqueeViewAdapter<String> {
 
     private Context mContext;
