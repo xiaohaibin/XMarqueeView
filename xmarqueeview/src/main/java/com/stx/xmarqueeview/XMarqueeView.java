@@ -28,7 +28,7 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
     /**
      * 是否单行显示
      */
-    private boolean isSingleLine = false;
+    private boolean isSingleLine = true;
 
     /**
      * 轮播间隔

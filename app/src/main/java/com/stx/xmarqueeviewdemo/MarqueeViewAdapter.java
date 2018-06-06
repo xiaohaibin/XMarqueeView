@@ -16,7 +16,7 @@ import java.util.List;
  * @time: 2018/6/6
  * @mail:xhb_199409@163.com
  * @github:https://github.com/xiaohaibin
- * @describe:
+ * @describe: 创建MarqueeView适配器
  */
 public class MarqueeViewAdapter extends XMarqueeViewAdapter<String> {
 
@@ -28,11 +28,13 @@ public class MarqueeViewAdapter extends XMarqueeViewAdapter<String> {
 
     @Override
     public View onCreateView(XMarqueeView parent) {
+        //跑马灯单个显示条目布局，自定义
         return LayoutInflater.from(parent.getContext()).inflate(R.layout.marqueeview_item, null);
     }
 
     @Override
     public void onBindView(View parent, View view, final int position) {
+        //布局内容填充
         TextView tvOne = (TextView) view.findViewById(R.id.marquee_tv_one);
         tvOne.setText(mDatas.get(position));
         view.setOnClickListener(new View.OnClickListener() {
