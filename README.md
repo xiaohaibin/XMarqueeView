@@ -6,9 +6,9 @@
 类似淘宝头条、京东头条的跑马灯效果，上下轮播，支持单行/双行显示
 
 ## 主要功能：
-- 支持单/双行轮播显示
 - 支持自定义轮播布局
 - 支持自定义轮播效果
+- 支持单/多行轮播显示，随意定制显示条目
 
 
 ## 效果图
@@ -37,6 +37,7 @@ dependencies {
             android:layout_width="0dp"
             app:isSingleLine="true"
             app:isSetAnimDuration="true"
+            app:marquee_count="3"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 ```
@@ -45,21 +46,54 @@ dependencies {
 #### 3.代码中使用
 
 ```
-      final List<String> data = new ArrayList<>();
+/**
+ * @author: xiaohaibin.
+ * @time: 2018/6/6
+ * @mail:xhb_199409@163.com
+ * @github:https://github.com/xiaohaibin
+ * @describe: 创建MarqueeView适配器
+ */
+public class MarqueeViewAdapter extends XMarqueeViewAdapter<String> {
+
+    private Context mContext;
+    public MarqueeViewAdapter(List<String> datas, Context context) {
+        super(datas);
+        mContext = context;
+    }
+
+    @Override
+    public View onCreateView(XMarqueeView parent) {
+        //跑马灯单个显示条目布局，自定义
+        return LayoutInflater.from(parent.getContext()).inflate(R.layout.marqueeview_item, null);
+    }
+
+    @Override
+    public void onBindView(View parent, View view, final int position) {
+        //布局内容填充
+        TextView tvOne = (TextView) view.findViewById(R.id.marquee_tv_one);
+        tvOne.setText(mDatas.get(position));
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "position" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+```
+
+```
+        List<String> data = new ArrayList<>();
         data.add("神奇宝贝（精灵宝可梦）有哪些著名的梗？");
         data.add("我翻开自我保护的书，上面只写了两个大字：证据");
         data.add("接纳自己，是无条件地爱，包括爱所有的痛苦");
         data.add("3 岁前，世界对待孩子的一切，都会给他们留下深刻的第一印象");
         data.add("担心今天没锻炼，现在站起来，做一组完美深蹲");
 
-        XMarqueeView marqueeviewone= (XMarqueeView) findViewById(R.id.upview1);
-        marqueeviewone.setData(data);
-        marqueeviewone.setOnItemClickListener(new XMarqueeView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, View view) {
-                Toast.makeText(MainActivity.this, data.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+        XMarqueeView xMarqueeView = (XMarqueeView) findViewById(R.id.marquee3);
+        xMarqueeView.setAdapter(new MarqueeViewAdapter(data, this));
+        //刷新数据
+        //marqueeViewAdapter.setData(data);
 ```
 
 #### 4.自定义轮播布局
@@ -95,11 +129,12 @@ dependencies {
 | 属性名 | 属性说明 | 属性值 | 
 | ------------ | ------------- | ------------ |
 | isSetAnimDuration| 是否设置动画时间间隔 | boolean，默认为false |
-| isSingleLine| 是否单行显示 | boolean ，默认false双行显示|
+| isSingleLine| 是否单行显示 | boolean ，默认true 单行显示|
 | marquee_interval| 轮播间隔 ，轮播间隔|int类型，默认3000ms |
 | marquee_animDuration| 轮播动画执行时间 | int类型，默认为1000ms |
 | marquee_textSize| 轮播字体大小 | dimension，默认为14sp |
 | marquee_textColor|轮播字体颜色 | color，默认为 #888888 |
+| marquee_count|轮播显示条目数量 | int类型，默认为 1，单行显示|
 
 ## 关于我
 
