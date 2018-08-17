@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         XMarqueeView marqueeviewone = (XMarqueeView) findViewById(R.id.marquee1);
         marqueeviewone.setAdapter(new MarqueeViewAdapter(mDatas, this));
+        marqueeviewone.stopFlipping();
 
 
         XMarqueeView marqueeviewtwo = (XMarqueeView) findViewById(R.id.marquee2);
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         XMarqueeView xMarqueeView = (XMarqueeView) findViewById(R.id.marquee3);
         xMarqueeView.setAdapter(new MarqueeViewAdapter(mDatas, this));
+
         //刷新数据
 //        marqueeViewAdapter.setData(mDatas);
     }

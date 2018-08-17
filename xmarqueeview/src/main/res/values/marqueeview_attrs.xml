@@ -8,5 +8,6 @@
         <attr name="marquee_animDuration" format="integer|reference"/>
         <attr name="marquee_textSize" format="dimension|reference"/>
         <attr name="marquee_textColor" format="color|reference"/>
+        <attr name="isFlippingLessCount" format="boolean"/>
     </declare-styleable>
 </resources>

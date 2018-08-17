@@ -47,6 +47,10 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
     private int itemCount = 1;
 
     private XMarqueeViewAdapter mMarqueeViewAdapter;
+    /**
+     * 当数据源少于一次性显示数目是否自动轮播标记
+     */
+    private boolean isFlippingLessCount = true;
 
     public XMarqueeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -58,6 +62,7 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
         if (typedArray != null) {
             isSetAnimDuration = typedArray.getBoolean(R.styleable.XMarqueeView_isSetAnimDuration, false);
             isSingleLine = typedArray.getBoolean(R.styleable.XMarqueeView_isSingleLine, true);
+            isFlippingLessCount = typedArray.getBoolean(R.styleable.XMarqueeView_isFlippingLessCount, true);
             interval = typedArray.getInteger(R.styleable.XMarqueeView_marquee_interval, interval);
             animDuration = typedArray.getInteger(R.styleable.XMarqueeView_marquee_animDuration, animDuration);
             if (typedArray.hasValue(R.styleable.XMarqueeView_marquee_textSize)) {
@@ -117,7 +122,21 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
                 addView(parentView);
             }
         }
-        startFlipping();
+        if (isFlippingLessCount) {
+            startFlipping();
+        }
+    }
+
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
+    }
+
+    public void setSingleLine(boolean singleLine) {
+        isSingleLine = singleLine;
+    }
+
+    public void setFlippingLessCount(boolean flippingLessCount) {
+        isFlippingLessCount = flippingLessCount;
     }
 
     private int getRealPosition(int index, int currentIndex) {

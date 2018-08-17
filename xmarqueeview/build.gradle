@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 //提交到仓库中的版本号
-version = "2.0.0"
+version = "2.0.1"
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 15
@@ -14,7 +14,7 @@ android {
 }
 
 dependencies {
-    provided 'com.android.support:appcompat-v7:25.3.1'
+    compileOnly 'com.android.support:appcompat-v7:25.3.1'
 }
 
 ///方法1
