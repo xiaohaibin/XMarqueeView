@@ -122,7 +122,7 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
                 addView(parentView);
             }
         }
-        if (isFlippingLessCount) {
+        if (isFlippingLessCount||itemCount>=mMarqueeViewAdapter.getItemCount()) {
             startFlipping();
         }
     }
