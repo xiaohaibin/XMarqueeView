@@ -2,13 +2,8 @@ package com.stx.xmarqueeviewdemo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.stx.xmarqueeview.XMarqueeView;
-import com.stx.xmarqueeview.XMarqueeViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

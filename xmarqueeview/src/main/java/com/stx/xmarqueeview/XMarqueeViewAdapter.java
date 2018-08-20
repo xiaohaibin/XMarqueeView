@@ -5,11 +5,11 @@ import android.view.View;
 import java.util.List;
 
 /**
- * @author: xiaohaibin.
- * @time: 2018/6/4
- * @mail:xhb_199409@163.com
- * @github:https://github.com/xiaohaibin
- * @describe: XMarqueeViewAdapter
+ * author: xiaohaibin.
+ * time: 2018/6/4
+ * mail:xhb_199409@163.com
+ * github:https://github.com/xiaohaibin
+ * describe: XMarqueeViewAdapter
  */
 public abstract class XMarqueeViewAdapter<T> {
 
