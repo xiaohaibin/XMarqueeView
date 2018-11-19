@@ -20,36 +20,25 @@ import com.xhb.xmarqueeview.R;
  * Created by jxnk25 on 2017/11/03.
  */
 public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnDataChangedListener {
-    /**
-     * 是否设置动画时间间隔
-     */
+
+    /**是否设置动画时间间隔*/
     private boolean isSetAnimDuration = false;
 
-    /**
-     * 是否单行显示
-     */
+    /**是否单行显示*/
     private boolean isSingleLine = true;
 
-    /**
-     * 轮播间隔
-     */
+    /**轮播间隔*/
     private int interval = 3000;
 
-    /**
-     * 动画时间
-     */
+    /**动画时间*/
     private int animDuration = 1000;
     private int textSize = 14;
     private int textColor = Color.parseColor("#888888");
-    /**
-     * 一次性显示多少个
-     */
+    /**一次性显示多少个*/
     private int itemCount = 1;
 
     private XMarqueeViewAdapter mMarqueeViewAdapter;
-    /**
-     * 当数据源少于一次性显示数目是否自动轮播标记
-     */
+    /**当数据源少于一次性显示数目是否自动轮播标记*/
     private boolean isFlippingLessCount = true;
 
     public XMarqueeView(Context context, AttributeSet attrs) {
@@ -83,6 +72,7 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
         setInAnimation(animIn);
         setOutAnimation(animOut);
         setFlipInterval(interval);
+        setMeasureAllChildren(false);
     }
 
 
