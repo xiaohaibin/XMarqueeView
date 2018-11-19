@@ -1,4 +1,4 @@
- [![Version](https://api.bintray.com/packages/jxnk25/maven/XMarqueeView/images/download.svg) ](https://bintray.com/jxnk25/maven/XMarqueeView/_latestVersion) 
+[![](https://jitpack.io/v/xiaohaibin/XMarqueeView.svg)](https://jitpack.io/#xiaohaibin/XMarqueeView)
  [![API](https://img.shields.io/badge/API-15%2B-green.svg)]()
  [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)]()
 
@@ -19,11 +19,25 @@
 
 #### 1.添加Gradle依赖
 
+Add it in your root build.gradle at the end of repositories:
+
 ```
-dependencies {
-   compile 'com.xhb:xmarqueeview:latestVersion'//将latestVersion替换成上面最新的版本号
-}
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
 ```
+
+Step 2. Add the dependency
+
+```
+	dependencies {
+	        implementation 'com.github.xiaohaibin:XMarqueeView:latestVersion'//将latestVersion替换成上面 jitpack 后面的版本号
+	}
+```
+
 
 #### 2.在布局文件中添加
 
