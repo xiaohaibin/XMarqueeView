@@ -21,24 +21,24 @@ import com.xhb.xmarqueeview.R;
  */
 public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnDataChangedListener {
 
-    /**是否设置动画时间间隔*/
+    /** 是否设置动画时间间隔 */
     private boolean isSetAnimDuration = false;
 
-    /**是否单行显示*/
+    /** 是否单行显示 */
     private boolean isSingleLine = true;
 
-    /**轮播间隔*/
+    /** 轮播间隔 */
     private int interval = 3000;
 
-    /**动画时间*/
+    /** 动画时间 */
     private int animDuration = 1000;
     private int textSize = 14;
     private int textColor = Color.parseColor("#888888");
-    /**一次性显示多少个*/
+    /** 一次性显示多少个 */
     private int itemCount = 1;
 
     private XMarqueeViewAdapter mMarqueeViewAdapter;
-    /**当数据源少于一次性显示数目是否自动轮播标记*/
+    /** 当数据源少于一次性显示数目是否自动轮播标记 */
     private boolean isFlippingLessCount = true;
 
     public XMarqueeView(Context context, AttributeSet attrs) {
@@ -106,13 +106,13 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
                 for (int j = 0; j < itemCount; j++) {
                     View view = mMarqueeViewAdapter.onCreateView(this);
                     parentView.addView(view);
-                    mMarqueeViewAdapter.onBindView(parentView, view, getRealPosition(j, currentIndex));
                     currentIndex = getRealPosition(j, currentIndex);
+                    mMarqueeViewAdapter.onBindView(parentView, view, currentIndex);
                 }
                 addView(parentView);
             }
         }
-        if (isFlippingLessCount||itemCount>=mMarqueeViewAdapter.getItemCount()) {
+        if (isFlippingLessCount || itemCount >= mMarqueeViewAdapter.getItemCount()) {
             startFlipping();
         }
     }
@@ -131,8 +131,7 @@ public class XMarqueeView extends ViewFlipper implements XMarqueeViewAdapter.OnD
 
     private int getRealPosition(int index, int currentIndex) {
         if ((index == 0 && currentIndex == 0) ||
-                (currentIndex == mMarqueeViewAdapter.getItemCount() - 1
-                        && currentIndex % itemCount == 0)) {
+                (currentIndex == mMarqueeViewAdapter.getItemCount() - 1)) {
             return 0;
         } else {
             return currentIndex + 1;
