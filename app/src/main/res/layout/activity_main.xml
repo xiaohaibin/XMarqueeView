@@ -22,7 +22,7 @@
         <com.stx.xmarqueeview.XMarqueeView
             android:id="@+id/marquee1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             app:isSetAnimDuration="true"
             app:isSingleLine="true" />
@@ -53,7 +53,7 @@
         <com.stx.xmarqueeview.XMarqueeView
             android:id="@+id/marquee2"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             app:isSetAnimDuration="true"
             app:marquee_count="2" />
@@ -83,7 +83,7 @@
         <com.stx.xmarqueeview.XMarqueeView
             android:id="@+id/marquee3"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             app:isSetAnimDuration="true"
             app:marquee_count="3" />
