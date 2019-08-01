@@ -18,8 +18,8 @@ public abstract class XMarqueeViewAdapter<T> {
 
     public XMarqueeViewAdapter(List<T> datas) {
         this.mDatas = datas;
-        if (datas == null || datas.isEmpty()) {
-            throw new RuntimeException("Nothing to Show With XMarqueeView");
+        if (datas == null) {
+            throw new RuntimeException("XMarqueeView datas is Null");
         }
     }
 
