@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<String> mDatas;
     private MarqueeViewAdapter mMarqueeViewAdapter;
+    private XMarqueeView mXMarqueeView;
+    private MarqueeViewAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +30,26 @@ public class MainActivity extends AppCompatActivity {
             mDatas.add("这是跑马灯内容" + (i + 1));
         }
 
-        XMarqueeView marqueeviewone = (XMarqueeView) findViewById(R.id.marquee1);
-        marqueeviewone.setAdapter(new MarqueeViewAdapter(mDatas, this));
+        XMarqueeView marqueeviewone = findViewById(R.id.marquee1);
+        mAdapter = new MarqueeViewAdapter(mDatas, this);
+        marqueeviewone.setAdapter(mAdapter);
         marqueeviewone.stopFlipping();
 
 
-        XMarqueeView marqueeviewtwo = (XMarqueeView) findViewById(R.id.marquee2);
+        XMarqueeView marqueeviewtwo = findViewById(R.id.marquee2);
         marqueeviewtwo.setAdapter(new MarqueeViewAdapter(mDatas, this));
 
 
-        XMarqueeView xMarqueeView = (XMarqueeView) findViewById(R.id.marquee3);
+        mXMarqueeView = findViewById(R.id.marquee3);
         mMarqueeViewAdapter = new MarqueeViewAdapter(mDatas, this);
-        xMarqueeView.setAdapter(mMarqueeViewAdapter);
-        Button btn = (Button) findViewById(R.id.btn);
+        mXMarqueeView.setAdapter(mMarqueeViewAdapter);
+        Button btn = findViewById(R.id.btn);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mDatas.clear();
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 2; i++) {
                     mDatas.add("这是刷新后的跑马灯内容" + (i + 1));
                 }
                 //刷新数据
